@@ -13,9 +13,27 @@ public class gamemanager : MonoBehaviour
     public TextMeshProUGUI text;
 
     public int score;
-    
 
-   
+    public static gamemanager instance;
+
+
+
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gamemanager.instance);
+        }
+
+        else
+        {
+            Destroy(gamemanager.instance);
+        }
+    }
+
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -34,6 +52,13 @@ public class gamemanager : MonoBehaviour
 
 
 
+    }
+
+
+
+    public void SpawnPong()
+    {
+        Instantiate(cube, new Vector2(0f, 0f), cube.transform.rotation);
     }
 
 

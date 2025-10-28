@@ -13,13 +13,14 @@ public class pongmovement : MonoBehaviour
 
     private Vector2 velocity;
 
-    public gamemanager gm;
+    private gamemanager gm;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-      
+        
+
         rb = GetComponent<Rigidbody2D>();
 
         speed = 5f;
@@ -31,6 +32,11 @@ public class pongmovement : MonoBehaviour
 
         rb.linearVelocity = new Vector2(x: direction.x * speed, y: direction.y * speed);
         velocity = rb.linearVelocity;
+    }
+
+    private void Start()
+    {
+        gm = gamemanager.instance.GetComponent<gamemanager>();
     }
 
     // Update is called once per frame
@@ -55,9 +61,14 @@ public class pongmovement : MonoBehaviour
 
         if(collision.gameObject.tag == "T")
         {
-            rb.linearVelocity = new Vector2(x: velocity.x * -1, y: velocity.y);
+            rb.linearVelocity = new Vector2(x: velocity.x * -1.5f, y: velocity.y);
 
             gm.score++;
+
+            gm.SpawnPong();
+
+
+
         }
 
         velocity = rb.linearVelocity;
