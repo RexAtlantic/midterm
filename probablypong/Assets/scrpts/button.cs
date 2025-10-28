@@ -1,17 +1,8 @@
-using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class gamemanager : MonoBehaviour
-
-   
+public class button : MonoBehaviour
 {
-    //variables
-
-    public GameObject cube;
-
-    
-
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,10 +13,15 @@ public class gamemanager : MonoBehaviour
     void Update()
     {
         
+ 
     }
 
 
-    
-   
+
+    public void NextScene()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
+
 
 }
