@@ -50,7 +50,7 @@ public class gamemanager : MonoBehaviour
 
         text.text = "Score:" + score;
 
-
+        
 
     }
 

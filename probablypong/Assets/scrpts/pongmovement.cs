@@ -66,14 +66,24 @@ public class pongmovement : MonoBehaviour
             gm.score++;
 
             gm.SpawnPong();
+        }
 
 
+        if(collision.gameObject.tag == "L")
+        {
+
+            gm.SpawnPong();
 
         }
 
+        if(collision.gameObject.tag == "F")
+        {
+            gm.score--;
+        }
+
+
         velocity = rb.linearVelocity;
 
-        
     }
 
 
