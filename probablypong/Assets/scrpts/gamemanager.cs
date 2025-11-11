@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class gamemanager : MonoBehaviour
 
@@ -24,23 +25,23 @@ public class gamemanager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gamemanager.instance);
+            DontDestroyOnLoad(gameObject);
         }
 
         else
         {
-            Destroy(gamemanager.instance);
+            Debug.Log("gone");
+            Destroy(gameObject);
         }
+
+        
+        SpawnPong();
     }
-
-
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       
-
+      
         
     }
 
@@ -50,7 +51,13 @@ public class gamemanager : MonoBehaviour
 
         text.text = "Score:" + score;
 
-        
+        if (score <= -1)
+        {
+            SceneManager.LoadScene("END");
+
+            score = 0;
+
+        }
 
     }
 
@@ -61,8 +68,8 @@ public class gamemanager : MonoBehaviour
         Instantiate(cube, new Vector2(0f, 0f), cube.transform.rotation);
     }
 
-
     
-   
+
+
 
 }

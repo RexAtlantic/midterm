@@ -29,14 +29,18 @@ public class pongmovement : MonoBehaviour
         float ystart = 0f;
 
         direction = new Vector2(Random.Range(-1f,1f), Random.Range(1f,-1f));
+        
 
         rb.linearVelocity = new Vector2(x: direction.x * speed, y: direction.y * speed);
         velocity = rb.linearVelocity;
+
+        gm = gamemanager.instance.GetComponent<gamemanager>();
+
     }
 
     private void Start()
     {
-        gm = gamemanager.instance.GetComponent<gamemanager>();
+       
     }
 
     // Update is called once per frame
@@ -59,7 +63,7 @@ public class pongmovement : MonoBehaviour
             rb.linearVelocity = new Vector2(y: velocity.y * -1, x: velocity.x);
         }
 
-        if(collision.gameObject.tag == "T")
+        if (collision.gameObject.tag == "T")
         {
             rb.linearVelocity = new Vector2(x: velocity.x * -1.5f, y: velocity.y);
 
@@ -69,24 +73,23 @@ public class pongmovement : MonoBehaviour
         }
 
 
-        if(collision.gameObject.tag == "L")
-        {
-
-            gm.SpawnPong();
-
-        }
-
-        if(collision.gameObject.tag == "F")
-        {
-            gm.score--;
-        }
-
 
         velocity = rb.linearVelocity;
 
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "L")
+        {
 
+            gm.score--;
+
+            gm.SpawnPong();
+
+
+        }
+    }
 
 
 }
